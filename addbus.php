@@ -143,8 +143,6 @@
 </body>
 </html>
 
-
-
 <script>
 
 const places = [
@@ -228,7 +226,7 @@ if (isEmpty) {
       data: formDataObj,
       success: function(response) {
         
-       $('#response') = empty();
+       $('#response').empty();
         $('#response').text(response);
         setTimeout(function(){
         
