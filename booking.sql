@@ -70,55 +70,31 @@ INSERT INTO `bus` VALUES (1,'5697','2023',20);
 UNLOCK TABLES;
 
 --
--- Table structure for table `seat_layout`
+-- Table structure for table `bus_details`
 --
 
-DROP TABLE IF EXISTS `seat_layout`;
+DROP TABLE IF EXISTS `bus_details`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `seat_layout` (
-  `layout_id` int(11) NOT NULL AUTO_INCREMENT,
-  `busno` int(11) NOT NULL,
-  `rightside` varchar(10) NOT NULL,
-  `leftside` varchar(10) NOT NULL,
-  PRIMARY KEY (`layout_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `bus_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `bus_number` varchar(10) NOT NULL,
+  `source` varchar(50) NOT NULL,
+  `destination` varchar(50) NOT NULL,
+  `departure_date` date NOT NULL,
+  `departure_time` time NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `seat_layout`
+-- Dumping data for table `bus_details`
 --
 
-LOCK TABLES `seat_layout` WRITE;
-/*!40000 ALTER TABLE `seat_layout` DISABLE KEYS */;
-INSERT INTO `seat_layout` VALUES (1,5697,'A1','B1'),(2,5697,'A2','B2'),(3,5697,'A3','B3'),(4,5697,'A4','B4'),(5,5697,'A5','B5'),(6,5697,'A6','B6'),(7,5697,'A7','B7'),(8,5697,'A8','B8'),(9,5697,'A9','B9'),(10,5697,'A10','B10');
-/*!40000 ALTER TABLE `seat_layout` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `seat_status`
---
-
-DROP TABLE IF EXISTS `seat_status`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `seat_status` (
-  `seatid` int(11) NOT NULL AUTO_INCREMENT,
-  `busno` int(11) NOT NULL,
-  `seatno` int(11) NOT NULL,
-  `status` enum('booking','selected','available') NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`seatid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `seat_status`
---
-
-LOCK TABLES `seat_status` WRITE;
-/*!40000 ALTER TABLE `seat_status` DISABLE KEYS */;
-/*!40000 ALTER TABLE `seat_status` ENABLE KEYS */;
+LOCK TABLES `bus_details` WRITE;
+/*!40000 ALTER TABLE `bus_details` DISABLE KEYS */;
+INSERT INTO `bus_details` VALUES (1,'678','A','B','2023-07-19','22:58:00'),(2,'','','','0000-00-00','00:00:00'),(3,'5697','A','B','2023-07-18','23:25:00');
+/*!40000 ALTER TABLE `bus_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -159,4 +135,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-16 23:38:12
+-- Dump completed on 2023-07-18 23:35:27
