@@ -6,7 +6,7 @@ try {
 
    
     $sql = "SELECT bd.bus_number AS bus_number,
-    CONCAT(bd.departure_date, ' ', bd.departure_time) AS datetime,
+    bd.departure_date as datetime, bd.departure_time AS time,
     bd.source AS source,
     bd.destination AS destination,
     (COUNT(*) - COALESCE(SUM(CASE WHEN s.status = 'booked' THEN 1 ELSE 0 END), 0)) AS available

@@ -185,13 +185,13 @@ if(isempty != 'empty'){
     function createBusCard(bus) {
       $('#bus_title').text('Bus Schedule');
     const card = document.createElement("div");
-    card.className = "col-md-10 mb-1";
+    card.className = "col-md-10 mb-1 card-clickable";
     card.innerHTML = `
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <span>${bus.bus_number}</span>
-            <span>${bus.datetime}</span>
+            <span>${bus.datetime}</span><span>${bus.time}</span>
             
           </div>
           <div class="d-flex justify-content-end" style="color:purple;font-weight:900; ">
@@ -205,8 +205,22 @@ if(isempty != 'empty'){
         </div>
       </div>
     `;
+      card.addEventListener("click", () => {
+      // Redirect to the next page with selected bus details
+      redirectToNextPage(bus);
+    });
     return card;
   }
+  function redirectToNextPage(bus) {
+  // Get the selected bus details
+  const busNo = bus.bus_number;
+  const src = bus.source;
+  const des = bus.destination;
+  const date = bus.datetime;
+
+  // Redirect to the next page with query parameters
+  window.location.href = `booking.php?busNo=${encodeURIComponent(busNo)}&src=${encodeURIComponent(src)}&des=${encodeURIComponent(des)}&date=${encodeURIComponent(date)}`;
+}
 
   // Function to render the bus list
   function renderBusList() {
@@ -248,6 +262,8 @@ if(isempty != 'empty'){
 }
 
 });
+
+
 
 </script>
 

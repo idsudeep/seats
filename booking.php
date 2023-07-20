@@ -130,6 +130,19 @@
 
 <script>
 
+function getQueryParamValue(param) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(param);
+    }
+
+    // Get the query parameters
+    const busNo = getQueryParamValue('busNo');
+    // const src = getQueryParamValue('src');
+    // const des = getQueryParamValue('des');
+    const date = getQueryParamValue('date');
+
+
+
 var busNumberElement = document.getElementById('busno');
 var busNumber = busNumberElement.textContent.split(':')[0].trim();
 
@@ -209,8 +222,8 @@ $.ajax({
       url: 'query.php', 
       type: 'POST',
       data: {
-        busNumber: '5697', 
-        date: '2023-07-16' 
+        busNumber: busNo, 
+        date: date 
       },
       success: function(response) {
         // Handle the response from the server
