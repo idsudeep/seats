@@ -2,9 +2,7 @@
 <?php
 
 require_once 'pdo.php';
-// Assuming you have a database connection established
 
-// Retrieve the seat number and action from the AJAX request
 $seatNumber = $_POST['seatNumber'];
 $busNumber = $_POST['busNumber'];
 $action = $_POST['action'];
