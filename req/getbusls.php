@@ -16,6 +16,7 @@ try {
     WHERE bd.departure_date = ? 
     AND bd.source = ? 
     AND bd.destination = ? 
+    
     GROUP BY bd.id, bd.bus_number, bd.departure_date, bd.departure_time, bd.source, bd.destination ";
 
     $stmt = $pdo->prepare($sql);
@@ -28,6 +29,7 @@ try {
     $stmt->bindParam(1, $date, PDO::PARAM_STR);
     $stmt->bindParam(2, $source, PDO::PARAM_STR);
     $stmt->bindParam(3, $destination, PDO::PARAM_STR);
+  
 
     $stmt->execute();
 

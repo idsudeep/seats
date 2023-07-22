@@ -79,8 +79,21 @@
   <div class="row">
     <div class="col-lg-6 offset-lg-3">
     <div class="row">
-      <span style="font-family:'Courier New', Courier, monospace; margin-bottom:20px;">Busno :<span id="busno">5796</span> <span id="sseat" style="margin-left:70px;">Time: 2080-03-29:07:45</span></span>
-    <span style="font-family:'Courier New', Courier, monospace ; margin-bottom: 15px;">SeatNo :<span id="selects"></span></span>
+      <span style="font-family:'Courier New', Courier, monospace; margin-bottom:20px;">Busno :<span id="busno"></span> <span id="sseat" style="margin-left:70px;">Time:
+    <?php 
+     require_once('config.php');
+
+     $busno =$_GET['busNo'];
+     $date = $_GET['date'];
+     $query = "select departure_date ,departure_time from bus_details where bus_number ='$busno' and departure_date = '$date'";
+     $r = mysqli_query($conn,$query);
+     $time = $r->fetch_assoc();
+    $dt = $time['departure_date'].' '.$time['departure_time'];
+    echo $dt;
+     ?>
+     </span></span>
+      <span style="font-family:'Courier New', Courier, monospace; margin-bottom:20px;">SeatNo :<span id="selects"></span> <span id="fromto" style="margin-left:70px;"></span></span>
+     
      </div>
     <div class="row-label">
       <div class="d-flex justify-content-center">
@@ -137,10 +150,15 @@ function getQueryParamValue(param) {
 
     // Get the query parameters
     const busNo = getQueryParamValue('busNo');
-    // const src = getQueryParamValue('src');
-    // const des = getQueryParamValue('des');
+    
+   
+    const src = getQueryParamValue('src');
+    const des = getQueryParamValue('des');
     const date = getQueryParamValue('date');
-
+    var texts = 'From : '+src+ '  To : '+des;
+    $('#busno').text(busNo);
+    $('#busno').text(busNo);
+    $('#fromto').text(texts);
 
 
 var busNumberElement = document.getElementById('busno');
@@ -187,13 +205,14 @@ function booking(){
                 busNumber:busNumber
             },
             success: function(response) {
-            if(response.success == 'success'){
+              const responseObject = JSON.parse(response);
+            if(responseObject.status == 'success'){
 
 
-
+              window.location.href = `ticket.php?busNo=${encodeURIComponent(busNumber)}&src=${encodeURIComponent(src)}&des=${encodeURIComponent(des)}&date=${encodeURIComponent(date)}`;
 
             }
-                console.log('Booking inserted successfully!');
+      
             },
             error: function(xhr, status, error) {
                 // Handle the error response from the server

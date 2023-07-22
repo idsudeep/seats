@@ -181,6 +181,7 @@ if(isempty != 'empty'){
       dataType: 'json',
       success: function(response) {
        
+        $('#busList').empty();
    if(response.length>0){
     function createBusCard(bus) {
       $('#bus_title').text('Bus Schedule');

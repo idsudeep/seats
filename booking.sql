@@ -29,7 +29,7 @@ CREATE TABLE `booking` (
   `person_name` varchar(255) DEFAULT NULL,
   `booking_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `booking` (
 
 LOCK TABLES `booking` WRITE;
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
-INSERT INTO `booking` VALUES (1,5796,'B3,B4','Pedro','2023-07-16 23:22:10');
+INSERT INTO `booking` VALUES (1,5796,'B3,B4','Pedro','2023-07-16 23:22:10'),(2,5796,'A4,A3','Pedro','2023-07-22 18:23:47'),(3,5796,'A2,A1','Pedro','2023-07-22 22:03:17'),(4,5796,'A2,A1','Pedro','2023-07-22 22:03:19'),(5,5697,'A6','Pedro','2023-07-22 22:59:41'),(6,5697,'A5','Pedro','2023-07-22 23:02:07'),(7,5697,'A5','Pedro','2023-07-22 23:02:10'),(8,5697,'A5','Pedro','2023-07-22 23:02:14'),(9,5697,'B7,B5','Pedro','2023-07-22 23:03:19'),(10,5697,'A4','Pedro','2023-07-22 23:04:03'),(11,5697,'B3','Pedro','2023-07-22 23:05:04'),(12,5697,'B4','Pedro','2023-07-22 23:05:36'),(13,5697,'A3','Pedro','2023-07-22 23:07:59');
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,8 +83,10 @@ CREATE TABLE `bus_details` (
   `destination` varchar(50) NOT NULL,
   `departure_date` date NOT NULL,
   `departure_time` time NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id`),
+  KEY `fk_bus_details_bus_number` (`bus_number`),
+  CONSTRAINT `fk_bus_details_bus_number` FOREIGN KEY (`bus_number`) REFERENCES `bus` (`bus_number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +95,6 @@ CREATE TABLE `bus_details` (
 
 LOCK TABLES `bus_details` WRITE;
 /*!40000 ALTER TABLE `bus_details` DISABLE KEYS */;
-INSERT INTO `bus_details` VALUES (1,'678','A','B','2023-07-19','22:58:00'),(2,'','','','0000-00-00','00:00:00'),(3,'5697','A','B','2023-07-18','23:25:00'),(4,'5796','A','B','2023-07-17','23:42:00'),(5,'100','A','B','2023-07-18','00:00:00');
 /*!40000 ALTER TABLE `bus_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +114,7 @@ CREATE TABLE `seats` (
   PRIMARY KEY (`id`),
   KEY `bus_number` (`bus_number`),
   CONSTRAINT `seats_ibfk_1` FOREIGN KEY (`bus_number`) REFERENCES `bus` (`bus_number`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +123,6 @@ CREATE TABLE `seats` (
 
 LOCK TABLES `seats` WRITE;
 /*!40000 ALTER TABLE `seats` DISABLE KEYS */;
-INSERT INTO `seats` VALUES (1,'5697','A1','2023-07-18','available'),(2,'5697','A2','2023-07-18','available'),(3,'5697','A3','2023-07-18','available'),(4,'5697','A4','2023-07-18','available'),(6,'5697','B1','2023-07-18','available'),(7,'5697','B2','2023-07-18','available'),(8,'5697','B3','2023-07-18','booked'),(9,'5697','B4','2023-07-18','booked'),(10,'5697','A5','2023-07-18','available'),(11,'5697','A6','2023-07-18','available'),(12,'5697','B5','2023-07-18','available'),(13,'5697','B6','2023-07-18','available'),(14,'5697','A7','2023-07-18','available'),(15,'5697','A8','2023-07-18','available'),(16,'5697','B7','2023-07-18','available'),(17,'5697','B8','2023-07-18','available'),(18,'100','A1','2023-07-18','status');
 /*!40000 ALTER TABLE `seats` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -135,4 +135,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-20 23:27:27
+-- Dump completed on 2023-07-22 23:09:18
